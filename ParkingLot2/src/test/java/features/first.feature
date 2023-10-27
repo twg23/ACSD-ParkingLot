@@ -1,8 +1,4 @@
 Feature:
-  Scenario:
-    Given first things
-    When second things
-    Then last things
 
   Scenario:  Long Term Lot
     Given I am staying in the "Long Term" parking lot

@@ -19,27 +19,13 @@ public class ParkingLotStepDefinitions {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    @Given("first things")
-    public void first_things() {
-        System.out.println("Given ran");
-    }
-    @When("second things")
-    public void second_things() {
-        System.out.println("When ran");
-    }
-    @Then("last things")
-    public void last_things() {
-        System.out.println("then ran");
-    }
-
     @Given("I am staying in the {string} parking lot")
     public void i_am_staying_in_the_parking_lot(String lotType) {
-        System.out.println("Creation step ran");
         if(lotType.equals("Long Term")) {
             parkingLot = new LongTermParkingLot();
         }
         else if(lotType.equals("Premium")) {
-            parkingLot = new PremiumParkingLot();
+            parkingLot = new PremiumLot();
         }
         else {
             parkingLot = new LongTermParkingLot();
@@ -48,7 +34,6 @@ public class ParkingLotStepDefinitions {
     }
     @When("I enter on {string}")
     public void i_enter_on(String entryTime) {
-        System.out.println("Trying to set the entry time");
         ticket.setEntryTime(entryTime);
         this.entryTime = LocalDateTime.parse(entryTime, formatter);
 
@@ -69,7 +54,6 @@ public class ParkingLotStepDefinitions {
         System.out.println("You stayed " + days + " days, " + hours + " hours and " + minutes + " minutes");
 
         int actualFee = parkingLot.calculateFee(ticket);
-        assertEquals(expectedFee, actualFee)
-
+        assertEquals(expectedFee, actualFee);
     }
 }
